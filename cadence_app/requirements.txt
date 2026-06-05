@@ -1,3 +1,6 @@
 flask==2.3.3
+requests==2.32.3
 # pywin32 305 is unavailable on newer Python/pip; allow newer compatible versions
 pywin32>=307
+pandas==2.2.3
+openpyxl==3.1.4

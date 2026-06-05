@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cadence Report Ready</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <main class="page-shell result-shell">
+      <section class="card result-card" aria-labelledby="result-title">
+        <header class="hero result-hero">
+          <span class="eyebrow">Processing complete</span>
+          <h1 id="result-title">Your workbook and report are ready</h1>
+          <p class="lead">The workbook was refreshed successfully, and an HTML report with graphs and insights was created from the analyzed data.</p>
+        </header>
+
+        <div class="content result-content">
+          <div class="panel">
+            <h2 class="section-title">Downloads</h2>
+            <p class="section-copy">Use the links below to get the refreshed workbook or open the report in your browser.</p>
+
+            <div class="action-grid">
+              <a class="primary-link" href="{{ workbook_url }}">Download refreshed workbook</a>
+              {% if report_url %}
+                <a class="secondary-link" href="{{ report_url }}" target="_blank" rel="noopener">Open HTML report</a>
+              {% endif %}
+              {% if cisco_url %}
+                <a class="secondary-link" href="{{ cisco_url }}">Download Cisco Funnel Excel</a>
+              {% endif %}
+            </div>
+
+            {% if report_error %}
+              <ul class="flash-list" role="status" aria-live="polite">
+                <li class="flash-item">Report generation warning: {{ report_error }}</li>
+              </ul>
+            {% endif %}
+
+            {% if report_summary %}
+              <div class="result-stats">
+                <div class="mini-stat"><span>Sheets analyzed</span><strong>{{ report_summary.sheet_count }}</strong></div>
+                <div class="mini-stat"><span>Total rows</span><strong>{{ report_summary.row_count }}</strong></div>
+                <div class="mini-stat"><span>Numeric fields</span><strong>{{ report_summary.numeric_fields }}</strong></div>
+                <div class="mini-stat"><span>Categorical fields</span><strong>{{ report_summary.categorical_fields }}</strong></div>
+              </div>
+            {% endif %}
+
+            <p class="footer-note">Tip: if you want to process another file, go back to the upload screen and submit a new workbook.</p>
+          </div>
+
+          {% if report_url %}
+            <div class="panel report-preview-panel">
+              <h2 class="section-title">Preview</h2>
+              <p class="section-copy">The report is embedded below so you can inspect the graphs and insights without leaving the page.</p>
+              <iframe class="report-frame" src="{{ report_url }}" title="Generated workbook report"></iframe>
+            </div>
+          {% endif %}
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

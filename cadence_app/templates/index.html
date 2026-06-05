@@ -4,21 +4,48 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Cadence Report Uploader</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
   </head>
   <body>
-    <h1>Upload Excel (with Power Query)</h1>
-    {% with messages = get_flashed_messages() %}
-      {% if messages %}
-        <ul>
-        {% for msg in messages %}
-          <li>{{ msg }}</li>
-        {% endfor %}
-        </ul>
-      {% endif %}
-    {% endwith %}
-    <form method="post" action="/upload" enctype="multipart/form-data">
-      <input type="file" name="file" accept=".xls,.xlsx,.xlsm,.xlsb" required>
-      <button type="submit">Upload & Process</button>
-    </form>
+    <main class="page-shell">
+      <section class="card" aria-labelledby="page-title">
+        <header class="hero">
+          <span class="eyebrow">Cadence Report Uploader</span>
+          <h1 id="page-title">Upload Excel files with Power Query</h1>
+          <p class="lead">Choose a workbook, submit it for processing, and download the refreshed file once the Power Query steps complete.</p>
+        </header>
+
+        <div class="content">
+          <div class="panel">
+            <h2 class="section-title">Select a workbook</h2>
+            <p class="section-copy">Supported formats include .xls, .xlsx, .xlsm, and .xlsb. The uploaded file is processed and returned as a refreshed workbook.</p>
+
+            {% with messages = get_flashed_messages() %}
+              {% if messages %}
+                <ul class="flash-list" role="status" aria-live="polite">
+                {% for msg in messages %}
+                  <li class="flash-item">{{ msg }}</li>
+                {% endfor %}
+                </ul>
+              {% endif %}
+            {% endwith %}
+
+            <form method="post" action="/upload" enctype="multipart/form-data">
+              <div class="file-drop">
+                <label for="file">Excel workbook</label>
+                <input id="file" type="file" name="file" accept=".xls,.xlsx,.xlsm,.xlsb" required>
+                <small>Pick the source workbook you want processed. The resulting file will download automatically after the refresh completes.</small>
+              </div>
+
+              <div class="actions">
+                <button type="submit">Upload &amp; Process</button>
+              </div>
+            </form>
+
+            <p class="footer-note">Tip: close the workbook before uploading if Excel has it open locally.</p>
+          </div>
+        </div>
+      </section>
+    </main>
   </body>
 </html>
