@@ -12,7 +12,7 @@ const styles = `
     --border: #2a2d38;
     --accent: #e8ff47;
     --accent-dim: #b8cc2f;
-    --text: #181a1b;
+    --text: #c9d2d6;
     --muted: #191a1e;
     --danger: #ff5e5e;
     --success: #47e8a0;
