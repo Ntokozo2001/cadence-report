@@ -6,14 +6,14 @@ const styles = `
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg: #0c0d0f;
-    --surface: #13151a;
+    --bg: #e6e8ed;
+    --surface: #eb1515;
     --surface-2: #1c1f27;
     --border: #2a2d38;
     --accent: #e8ff47;
     --accent-dim: #b8cc2f;
-    --text: #f0f2f5;
-    --muted: #7a8099;
+    --text: #181a1b;
+    --muted: #191a1e;
     --danger: #ff5e5e;
     --success: #47e8a0;
     --radius: 4px;
@@ -22,7 +22,7 @@ const styles = `
 
   .app-root {
     font-family: 'DM Mono', monospace;
-    background: var(--bg);
+    background: transparent;
     min-height: 100vh;
     color: var(--text);
     display: flex;
@@ -90,15 +90,16 @@ const styles = `
 
   /* ── CARD ── */
   .card {
-    background: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
     overflow: hidden;
+    background: white;
   }
 
   .card-header {
+    background: #eb1515;
+    color: white;
     padding: 40px 40px 32px;
-    border-bottom: 1px solid var(--border);
   }
 
   .card-body {
