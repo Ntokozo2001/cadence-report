@@ -1,6 +1,6 @@
 # Cadence Report Automation
 
-This small Flask app allows uploading an Excel workbook that contains Power Query (M) queries. The app will open Excel via COM automation, refresh Power Query queries, and return the processed workbook.
+This project now uses a React/Vite frontend for the upload flow, backed by a Flask server that refreshes the workbook and generates the report.
 
 Requirements:
 - Windows with Microsoft Excel installed
@@ -16,7 +16,7 @@ venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-2. Run the app:
+2. Run the Flask backend:
 
 ```bash
 uv run python app.py
@@ -28,7 +28,17 @@ If you are using an activated virtual environment instead of `uv`, run:
 venv\Scripts\python.exe app.py
 ```
 
-3. Open `http://127.0.0.1:5000` and upload an Excel file.
+3. In a second terminal, run the React frontend:
+
+```bash
+cd react_frontend
+npm install
+npm run dev
+```
+
+4. Open the Vite URL shown in the terminal, usually `http://127.0.0.1:5173`.
+
+The React app proxies `/upload`, `/download`, `/report`, and `/api` requests to the Flask backend on port 5000.
 
 The app will return the refreshed workbook and generate an HTML report with charts and data insights.
 
