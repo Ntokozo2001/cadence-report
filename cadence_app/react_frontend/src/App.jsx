@@ -309,12 +309,18 @@ const styles = `
   /* ── IFRAME ── */
   .preview-frame {
     width: 100%;
-    height: 520px;
+    height: 1850px;
     border: 1px solid var(--border);
     border-radius: var(--radius);
     background: #fff;
     margin-top: 12px;
+    overflow: hidden;
+    scrollbar-width: none;
   }
+
+  .preview-frame::-webkit-scrollbar {
+  display: none;
+}
 
   /* ── FOOTER NOTE ── */
   .footer-note {
@@ -573,6 +579,7 @@ function ResultPage({ result, onReset }) {
                 className="preview-frame"
                 src={report_url}
                 title="Generated workbook report"
+                scrolling="no"
               />
             </div>
           )}
